@@ -58,14 +58,15 @@ public class LicenseServiceImp implements LicenseService {
     @Override
     public void addLicenseToContents(Long licenseId, Long[] contentIds) {
         boolean isExisted = licenseRepository.existsById(licenseId);
+        License license = licenseRepository.findOneById(licenseId);
         if (isExisted) {
             for (Long contentId : contentIds) {
                 Content content = contentRepository.findOneById(contentId);
-                if (content != null && !content.getLicenses().stream().anyMatch(license -> license.getId().equals(licenseId))) {
-                    License license = licenseRepository.findOneById(licenseId);
-                    content.getLicenses().add(license);
+                if (content != null && !content.getLicenses().stream().anyMatch(c -> c.getId().equals(contentId))) {
+                    license.getContents().add(content);
                 }
             }
+            licenseRepository.save(license);
         }
 
     }

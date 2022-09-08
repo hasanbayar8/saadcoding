@@ -26,7 +26,7 @@ public class Content {
     private String posterUrl;
     private String videoUrl;
 
-    @ManyToMany(targetEntity = License.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToMany(targetEntity = License.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "content_licenses",
             joinColumns = @JoinColumn(name = "content_id", nullable = false, updatable = false),
             inverseJoinColumns = @JoinColumn(name = "license_id", nullable = false, updatable = false)

@@ -1,8 +1,7 @@
 package com.example.saatcoding.requirement.Controller;
 
 import com.example.saatcoding.requirement.main.Content;
-import com.example.saatcoding.requirement.service.ContentService;
-import com.example.saatcoding.requirement.service.LicenseService;
+import com.example.saatcoding.requirement.service.implementation.ContentServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path ="/api/v1/content")
 @RequiredArgsConstructor
-public class ContentController {
-    private final ContentService contentService;
-    private final LicenseService licenseService;
+public class ContentController{
+    private final ContentServiceImp contentService;
 
     @GetMapping
     public List<Content> getContent() {
@@ -23,7 +21,7 @@ public class ContentController {
 
     @PostMapping
     public ResponseEntity registerNewContent(@RequestBody Content content) {
-        contentService.add(content);
+        contentService.addNewContent(content);
         return ResponseEntity.ok("OK");
     }
 
@@ -40,7 +38,8 @@ public class ContentController {
     }
 
     @PostMapping(path = "/{contentId}/addLicenseToContent")
-    public ResponseEntity addContentToLicenses(@PathVariable("contentId") Long contentId, @RequestBody Long[] licenseIds) {
+    public ResponseEntity addContentToLicenses(@PathVariable("contentId") Long contentId,
+                                               @RequestBody Long[] licenseIds) {
         contentService.addContentToLicenses(contentId, licenseIds);
 
         return ResponseEntity.ok("OK");

@@ -17,4 +17,5 @@ public interface LicenseService {
     List<License> getLicense();
 
     void deleteLicense(Long licenseId);
+
 }

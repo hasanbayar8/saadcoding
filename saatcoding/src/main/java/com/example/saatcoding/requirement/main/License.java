@@ -39,7 +39,9 @@ public class License {
     }
 
 
-    public License(Long id,
+    public License() {
+
+    }public License(Long id,
                    List<Content> contents,
                    String name,
                    LocalDate startTime,
@@ -49,10 +51,6 @@ public class License {
         this.startTime = startTime;
         this.endTime = endTime;
         this.contents = contents;
-
-    }
-
-    public License() {
 
     }
 
