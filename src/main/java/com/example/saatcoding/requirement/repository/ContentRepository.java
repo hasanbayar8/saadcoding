@@ -1,6 +1,7 @@
 package com.example.saatcoding.requirement.repository;
 
-import com.example.saatcoding.requirement.main.Content;
+import com.example.saatcoding.requirement.entities.Content;
+import com.example.saatcoding.requirement.entities.License;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,7 @@ public interface ContentRepository
     Optional<Content> findContentByVideoUrl(String videoUrl);
 
     Content findOneById(Long contentId);
+
+
 }
+

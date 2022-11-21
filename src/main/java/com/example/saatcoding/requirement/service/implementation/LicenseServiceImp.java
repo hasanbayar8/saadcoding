@@ -1,9 +1,9 @@
 package com.example.saatcoding.requirement.service.implementation;
 
-import com.example.saatcoding.requirement.main.Content;
+import com.example.saatcoding.requirement.entities.Content;
+import com.example.saatcoding.requirement.entities.License;
 import com.example.saatcoding.requirement.repository.ContentRepository;
 import com.example.saatcoding.requirement.repository.LicenseRepository;
-import com.example.saatcoding.requirement.main.License;
 import com.example.saatcoding.requirement.service.LicenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,12 @@ public class LicenseServiceImp implements LicenseService {
     public void addNewLicense(License license) {
         Optional<License> licenseOptional = licenseRepository.
                 findLicenseByName(license.getName());
+
         if (licenseOptional.isPresent()) {
-            throw new IllegalStateException("name taken");
-        }
+            throw new IllegalStateException("name taken"); } {
+            if (licenseOptional.stream().anyMatch(li -> li.getStartTime().isAfter(license.getEndTime()))) {
+                    throw new RuntimeException("invalid time");}
+            }
         licenseRepository.save(license);
     }
 
@@ -68,6 +71,5 @@ public class LicenseServiceImp implements LicenseService {
             }
             licenseRepository.save(license);
         }
-
     }
 }

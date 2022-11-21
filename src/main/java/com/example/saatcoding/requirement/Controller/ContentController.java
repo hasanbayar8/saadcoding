@@ -1,6 +1,7 @@
-package com.example.saatcoding.requirement.Controller;
+package com.example.saatcoding.requirement.controller;
 
-import com.example.saatcoding.requirement.main.Content;
+import com.example.saatcoding.requirement.entities.Content;
+import com.example.saatcoding.requirement.entities.Status;
 import com.example.saatcoding.requirement.service.implementation.ContentServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +45,11 @@ public class ContentController{
 
         return ResponseEntity.ok("OK");
     }
+    @PutMapping(path = "contentStatus")
+    public void updateStatus(
+            @PathVariable("contentStatus") Long contentId,
+            @RequestParam(required = false) Status status) {
+        contentService.updateStatus(contentId, status);
 
+    }
 }

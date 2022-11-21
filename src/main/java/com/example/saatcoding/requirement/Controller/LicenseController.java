@@ -1,6 +1,6 @@
-package com.example.saatcoding.requirement.Controller;
+package com.example.saatcoding.requirement.controller;
 
-import com.example.saatcoding.requirement.main.License;
+import com.example.saatcoding.requirement.entities.License;
 import com.example.saatcoding.requirement.service.implementation.LicenseServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

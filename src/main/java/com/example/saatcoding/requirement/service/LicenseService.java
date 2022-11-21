@@ -1,6 +1,6 @@
 package com.example.saatcoding.requirement.service;
 
-import com.example.saatcoding.requirement.main.License;
+import com.example.saatcoding.requirement.entities.License;
 
 import java.util.List;
 
